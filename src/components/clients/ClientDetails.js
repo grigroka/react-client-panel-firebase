@@ -10,14 +10,23 @@ import Spinner from '../layout/Spinner';
 export class ClientDetails extends Component {
   state = {
     showBalanceUpdate: false,
-    balanceUpdateAmout: ''
+    balanceUpdateAmount: ''
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   balanceSubmit = e => {
     e.preventDefault();
-    console.log(this.state.balanceUpdateAmout);
+    const { client, firestore } = this.props;
+    const { balanceUpdateAmount } = this.state;
+
+    const clientUpdate = {
+      balance:
+        balanceUpdateAmount === '' ? '0' : parseFloat(balanceUpdateAmount)
+    };
+
+    // Update in firestore
+    firestore.update({ collection: 'clients', doc: client.id }, clientUpdate);
   };
 
   render() {
@@ -33,7 +42,7 @@ export class ClientDetails extends Component {
             <input
               type="number"
               className="form-control"
-              name="balanceUpdateAmout"
+              name="balanceUpdateAmount"
               placeholder="Add New Balance"
               value={balanceUpdateAmount}
               onChange={this.onChange}
