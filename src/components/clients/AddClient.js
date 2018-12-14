@@ -16,12 +16,15 @@ export class AddClient extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const newClient = { ...this.state };
-    const { firestore, history } = this.props;
 
-    if (newClient.balance === '') {
-      newClient.balance = 0;
-    }
+    const {
+      state,
+      props: { firestore, history }
+    } = this;
+    const newClient = {
+      ...state,
+      balance: state.balance === '' ? '0' : state.balance
+    };
 
     firestore
       .add({ collection: 'clients' }, newClient)
