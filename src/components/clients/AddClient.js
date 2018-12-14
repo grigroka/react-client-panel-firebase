@@ -96,7 +96,7 @@ export class AddClient extends Component {
               <div className="form-group">
                 <label htmlFor="balance">Balance</label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
                   name="balance"
                   onChange={this.onChange}
