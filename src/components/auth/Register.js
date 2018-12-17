@@ -12,6 +12,13 @@ export class Register extends Component {
     password: ''
   };
 
+  componentWillMount() {
+    const { allowRegistration } = this.props.settings;
+    if (!allowRegistration) {
+      this.props.history.push('/');
+    }
+  }
+
   onSubmit = e => {
     e.preventDefault();
 
