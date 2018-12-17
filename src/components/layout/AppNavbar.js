@@ -6,19 +6,19 @@ import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 
 export class AppNavbar extends Component {
-  state = {
-    isAuthenticated: false
-  };
+  // state = {
+  //   isAuthenticated: false
+  // };
 
-  static getDerivedStateFromProps(props, state) {
-    const { auth } = props;
+  // static getDerivedStateFromProps(props, state) {
+  //   const { auth } = props;
 
-    if (auth.uid) {
-      return { isAuthenticated: true };
-    } else {
-      return { isAuthenticated: false };
-    }
-  }
+  //   if (auth.uid) {
+  //     return { isAuthenticated: true };
+  //   } else {
+  //     return { isAuthenticated: false };
+  //   }
+  // }
 
   onLogoutClick = e => {
     e.preventDefault();
@@ -28,7 +28,7 @@ export class AppNavbar extends Component {
 
   render() {
     const { auth } = this.props;
-    const { isAuthenticated } = this.state;
+    // const { isAuthenticated } = this.state;
     return (
       <nav className="navbar navbar-expand-md navbar-dark bg-primary mb-4">
         <div className="container">
@@ -45,7 +45,7 @@ export class AppNavbar extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarMain">
             <ul className="navbar-nav mr-auto">
-              {isAuthenticated ? (
+              {auth.uid ? (
                 <li className="nav-item">
                   <Link to="/" className="nav-link">
                     Dashboard
@@ -53,7 +53,7 @@ export class AppNavbar extends Component {
                 </li>
               ) : null}
             </ul>
-            {isAuthenticated ? (
+            {auth.uid ? (
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <a href="#!" className="nav-link">
