@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Alert = props => {
-  const { message, messageType } = this.props;
+  const { message, messageType } = props;
   return (
     <div
       className={
